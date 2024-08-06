@@ -1,8 +1,9 @@
-
 from pathlib import Path
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -16,8 +17,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    # External Packages
     "rest_framework",
+    # Internal Apps,
+    "drfecommerce.product",
 ]
 
 MIDDLEWARE = [
@@ -77,6 +80,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-REST_FRAMEWORK = [
-    
-]
+REST_FRAMEWORK = {}
