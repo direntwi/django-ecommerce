@@ -25,6 +25,10 @@ router = DefaultRouter()
 router.register(r"category", views.CategoryViewSet)
 router.register(r"brand", views.BrandViewSet)
 router.register(r"product", views.ProductViewSet)
+router.register(r"product-line", views.ProductLineViewSet)
+router.register(r"product-image", views.ProductImageViewSet)
+router.register(r"attribute", views.AttributeViewSet)
+router.register(r"attribute-value", views.AttributeValueViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
