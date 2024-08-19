@@ -8,6 +8,8 @@ load_dotenv()
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
+AUTH_USER_MODEL = "authentication.User"
+
 DEBUG = True
 
 INSTALLED_APPS = [
@@ -20,8 +22,10 @@ INSTALLED_APPS = [
     # External Packages
     "rest_framework",
     "drf_spectacular",
+    "rest_framework_simplejwt",
     # Internal Apps,
     "drfecommerce.product",
+    "drfecommerce.authentication",
 ]
 
 MIDDLEWARE = [
@@ -81,8 +85,21 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
+REST_FRAMEWORK = {
+    "NON_FIELD_KEY_ERRORS": "Error",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Django DRF Ecommerce",
 }
+
+EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND")
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
