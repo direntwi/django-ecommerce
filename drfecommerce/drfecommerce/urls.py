@@ -1,38 +1,27 @@
-"""
-URL configuration for drfecommerce project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from drfecommerce.product import views
+from drfecommerce.product import views as product
+from drfecommerce.authentication import views as auth
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 router = DefaultRouter()
-router.register(r"category", views.CategoryViewSet)
-router.register(r"brand", views.BrandViewSet)
-router.register(r"product", views.ProductViewSet)
-router.register(r"product-line", views.ProductLineViewSet)
-router.register(r"product-image", views.ProductImageViewSet)
-router.register(r"attribute", views.AttributeViewSet)
-router.register(r"attribute-value", views.AttributeValueViewSet)
+router.register(r"category", product.CategoryViewSet)
+router.register(r"brand", product.BrandViewSet)
+router.register(r"product", product.ProductViewSet)
+router.register(r"product-line", product.ProductLineViewSet)
+router.register(r"product-image", product.ProductImageViewSet)
+router.register(r"attribute", product.AttributeViewSet)
+router.register(r"attribute-value", product.AttributeValueViewSet)
+
+# auth_router = DefaultRouter()
+# auth_router.register(r"register", auth.RegisterView.as_view(), name="register")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
+    # path("auth/", include(auth_router.urls)),
+    path("auth/", include("drfecommerce.authentication.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/schema/docs/", SpectacularSwaggerView.as_view(url_name="schema")),
 ]
