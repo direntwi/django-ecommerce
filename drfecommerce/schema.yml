@@ -1,0 +1,554 @@
+openapi: 3.0.3
+info:
+  title: Django DRF Ecommerce
+  version: 0.0.0
+paths:
+  /api/attribute/:
+    get:
+      operationId: api_attribute_list
+      description: A simple Viewset for viewing all attributes
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attribute'
+          description: ''
+  /api/attribute-value/:
+    get:
+      operationId: api_attribute_value_list
+      description: A simple Viewset for viewing all attributes
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttributeValue'
+          description: ''
+  /api/brand/:
+    get:
+      operationId: api_brand_list
+      description: A simple Viewset for viewing all brands
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brand'
+          description: ''
+  /api/category/:
+    get:
+      operationId: api_category_list
+      description: A simple Viewset for viewing all categories
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+  /api/product/:
+    get:
+      operationId: api_product_list
+      description: A simple Viewset for viewing all products
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+          description: ''
+  /api/product-image/:
+    get:
+      operationId: api_product_image_list
+      description: A simple Viewset for viewing all product images
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductImage'
+          description: ''
+  /api/product-line/:
+    get:
+      operationId: api_product_line_list
+      description: A simple Viewset for viewing all product lines
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductLine'
+          description: ''
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /auth/email-verify/:
+    get:
+      operationId: auth_email_verify_retrieve
+      parameters:
+      - in: query
+        name: token
+        schema:
+          type: string
+        description: Description
+      tags:
+      - auth
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyEmail'
+          description: ''
+  /auth/login/:
+    post:
+      operationId: auth_login_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Login'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+          description: ''
+  /auth/register/:
+    post:
+      operationId: auth_register_create
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+components:
+  schemas:
+    Attribute:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    AttributeValue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        attribute:
+          $ref: '#/components/schemas/Attribute'
+        value:
+          type: string
+          maxLength: 100
+      required:
+      - attribute
+      - id
+      - value
+    Brand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        lft:
+          type: integer
+          readOnly: true
+        rght:
+          type: integer
+          readOnly: true
+        tree_id:
+          type: integer
+          readOnly: true
+        level:
+          type: integer
+          readOnly: true
+        parent:
+          type: integer
+          nullable: true
+      required:
+      - id
+      - level
+      - lft
+      - name
+      - rght
+      - tree_id
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+          minLength: 3
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 68
+          minLength: 6
+        username:
+          type: string
+          readOnly: true
+          maxLength: 255
+          minLength: 3
+        tokens:
+          type: string
+          readOnly: true
+          maxLength: 68
+          minLength: 6
+      required:
+      - email
+      - password
+      - tokens
+      - username
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        brand:
+          $ref: '#/components/schemas/Brand'
+        category:
+          $ref: '#/components/schemas/Category'
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        is_digital:
+          type: boolean
+      required:
+      - brand
+      - category
+      - id
+      - name
+    ProductImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/ProductLine'
+        name:
+          type: string
+          maxLength: 255
+        alternative_text:
+          type: string
+          maxLength: 255
+        url:
+          type: string
+          format: uri
+        product_line:
+          type: integer
+      required:
+      - id
+      - product
+      - product_line
+      - url
+    ProductLine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/Product'
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        sku:
+          type: string
+          maxLength: 100
+        stock_qty:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+      required:
+      - id
+      - price
+      - product
+      - sku
+    Register:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        username:
+          type: string
+          maxLength: 255
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 68
+          minLength: 8
+      required:
+      - email
+      - password
+      - username
+    VerifyEmail:
+      type: object
+      properties:
+        token:
+          type: string
+          maxLength: 555
+      required:
+      - token
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
