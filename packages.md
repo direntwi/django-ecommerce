@@ -12,6 +12,7 @@ coverage
 pytest-coverage
 pytest-factoryboy
 djangorestframework_simplejwt
+django-cors-headers
 
 #commands
 python manage.py spectacular --file schema.yml - to generate a schema file for APIs
