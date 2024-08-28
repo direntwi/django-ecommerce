@@ -7,7 +7,7 @@ from django.utils.encoding import (DjangoUnicodeDecodeError, smart_bytes,
                                    smart_str)
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from drf_spectacular.utils import OpenApiParameter, extend_schema
-from rest_framework import generics, status, views
+from rest_framework import generics, permissions, status, views
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -138,3 +138,15 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response({'success': True, 'message': 'Password reset success'}, status=status.HTTP_200_OK)
+
+
+class LogoutAPIView(generics.GenericAPIView):
+    serializer_class = LogoutSerializer
+    permission_classes = (permissions.IsAuthenticated)
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid = True
+        serializer.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

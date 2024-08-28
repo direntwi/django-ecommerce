@@ -1,8 +1,9 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-from dotenv import load_dotenv
 import os
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -23,6 +24,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     # Internal Apps,
     "drfecommerce.product",
