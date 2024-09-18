@@ -1,9 +1,11 @@
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from drfecommerce.product import views as product
-from drfecommerce.authentication import views as auth
+from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from rest_framework.routers import DefaultRouter
+
+from drfecommerce.authentication import views as auth
+from drfecommerce.cart import views as cart
+from drfecommerce.product import views as product
 
 router = DefaultRouter()
 router.register(r"category", product.CategoryViewSet)
@@ -13,6 +15,8 @@ router.register(r"product-line", product.ProductLineViewSet)
 router.register(r"product-image", product.ProductImageViewSet)
 router.register(r"attribute", product.AttributeViewSet)
 router.register(r"attribute-value", product.AttributeValueViewSet)
+
+router.register(r"cart", cart.CartViewSet, basename="cart")
 
 # auth_router = DefaultRouter()
 # auth_router.register(r"register", auth.RegisterView.as_view(), name="register")

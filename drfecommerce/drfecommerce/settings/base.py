@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # Internal Apps,
     "drfecommerce.product",
     "drfecommerce.authentication",
+    "drfecommerce.cart",
 ]
 
 MIDDLEWARE = [
