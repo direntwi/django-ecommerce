@@ -6,6 +6,7 @@ from rest_framework.routers import DefaultRouter
 from drfecommerce.authentication import views as auth
 from drfecommerce.cart import views as cart
 from drfecommerce.product import views as product
+from drfecommerce.wishlist import views as wishlist
 
 router = DefaultRouter()
 router.register(r"category", product.CategoryViewSet)
@@ -17,6 +18,7 @@ router.register(r"attribute", product.AttributeViewSet)
 router.register(r"attribute-value", product.AttributeValueViewSet)
 
 router.register(r"cart", cart.CartViewSet, basename="cart")
+router.register(r"user", auth.UserViewSet)
 
 # auth_router = DefaultRouter()
 # auth_router.register(r"register", auth.RegisterView.as_view(), name="register")

@@ -131,3 +131,7 @@ class LogoutSerializer(serializers.Serializer):
         except TokenError:
             self.fail("bad_token")
         
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
