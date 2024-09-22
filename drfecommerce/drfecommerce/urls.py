@@ -19,6 +19,7 @@ router.register(r"attribute-value", product.AttributeValueViewSet)
 
 router.register(r"cart", cart.CartViewSet, basename="cart")
 router.register(r"user", auth.UserViewSet)
+router.register(r"wishlist", wishlist.WishlistViewSet)
 
 # auth_router = DefaultRouter()
 # auth_router.register(r"register", auth.RegisterView.as_view(), name="register")

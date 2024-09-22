@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "drfecommerce.product",
     "drfecommerce.authentication",
     "drfecommerce.cart",
+    "drfecommerce.wishlist",
 ]
 
 MIDDLEWARE = [
